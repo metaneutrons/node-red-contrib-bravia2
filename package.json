@@ -40,7 +40,11 @@
       "bravia-ircc": "nodes/bravia-ircc.js",
       "bravia-api": "nodes/bravia-api.js",
       "bravia-control": "nodes/bravia-control.js"
-    }
+    },
+    "examples": [
+      { "name": "control-tv", "path": "examples/control-tv.json" },
+      { "name": "ircc-commands", "path": "examples/ircc-commands.json" }
+    ]
   },
   "dependencies": {
     "fast-xml-parser": "^5.3.3"

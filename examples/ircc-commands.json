@@ -1,0 +1,85 @@
+[
+    {
+        "id": "bravia2-example-ircc",
+        "type": "tab",
+        "label": "Bravia IRCC Example",
+        "disabled": false,
+        "info": "Example flow showing how to send remote control commands to a Sony BRAVIA TV."
+    },
+    {
+        "id": "ircc-node",
+        "type": "bravia-ircc",
+        "z": "bravia2-example-ircc",
+        "tv": "",
+        "command": "",
+        "name": "Send Command",
+        "x": 320,
+        "y": 100,
+        "wires": [["debug-ircc"]]
+    },
+    {
+        "id": "debug-ircc",
+        "type": "debug",
+        "z": "bravia2-example-ircc",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload",
+        "x": 490,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "inject-home",
+        "type": "inject",
+        "z": "bravia2-example-ircc",
+        "name": "Home",
+        "props": [{"p": "payload"}],
+        "repeat": "",
+        "payload": "Home",
+        "payloadType": "str",
+        "x": 110,
+        "y": 100,
+        "wires": [["ircc-node"]]
+    },
+    {
+        "id": "inject-volup",
+        "type": "inject",
+        "z": "bravia2-example-ircc",
+        "name": "Volume Up",
+        "props": [{"p": "payload"}],
+        "repeat": "",
+        "payload": "VolumeUp",
+        "payloadType": "str",
+        "x": 110,
+        "y": 160,
+        "wires": [["ircc-node"]]
+    },
+    {
+        "id": "inject-voldown",
+        "type": "inject",
+        "z": "bravia2-example-ircc",
+        "name": "Volume Down",
+        "props": [{"p": "payload"}],
+        "repeat": "",
+        "payload": "VolumeDown",
+        "payloadType": "str",
+        "x": 120,
+        "y": 220,
+        "wires": [["ircc-node"]]
+    },
+    {
+        "id": "inject-mute",
+        "type": "inject",
+        "z": "bravia2-example-ircc",
+        "name": "Mute",
+        "props": [{"p": "payload"}],
+        "repeat": "",
+        "payload": "Mute",
+        "payloadType": "str",
+        "x": 110,
+        "y": 280,
+        "wires": [["ircc-node"]]
+    }
+]

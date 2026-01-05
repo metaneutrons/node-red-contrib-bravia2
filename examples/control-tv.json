@@ -1,0 +1,90 @@
+[
+    {
+        "id": "bravia2-example-control",
+        "type": "tab",
+        "label": "Bravia Control Example",
+        "disabled": false,
+        "info": "Example flow showing how to use the bravia-control node to monitor and control a Sony BRAVIA TV."
+    },
+    {
+        "id": "control-node",
+        "type": "bravia-control",
+        "z": "bravia2-example-control",
+        "tv": "",
+        "pollVolume": true,
+        "pollInput": true,
+        "interval": "10",
+        "intervalUnit": "seconds",
+        "pollAfterCommand": true,
+        "outputMode": "change",
+        "name": "TV Status",
+        "x": 310,
+        "y": 100,
+        "wires": [["debug-status"]]
+    },
+    {
+        "id": "debug-status",
+        "type": "debug",
+        "z": "bravia2-example-control",
+        "name": "TV State",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload",
+        "x": 500,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "inject-on",
+        "type": "inject",
+        "z": "bravia2-example-control",
+        "name": "Power On",
+        "props": [{"p": "payload"}],
+        "repeat": "",
+        "payload": "{\"power\":true}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 160,
+        "wires": [["control-node"]]
+    },
+    {
+        "id": "inject-off",
+        "type": "inject",
+        "z": "bravia2-example-control",
+        "name": "Power Off",
+        "props": [{"p": "payload"}],
+        "repeat": "",
+        "payload": "{\"power\":false}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 200,
+        "wires": [["control-node"]]
+    },
+    {
+        "id": "inject-volume",
+        "type": "inject",
+        "z": "bravia2-example-control",
+        "name": "Volume 20",
+        "props": [{"p": "payload"}],
+        "repeat": "",
+        "payload": "{\"volume\":20}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 260,
+        "wires": [["control-node"]]
+    },
+    {
+        "id": "inject-hdmi1",
+        "type": "inject",
+        "z": "bravia2-example-control",
+        "name": "HDMI 1",
+        "props": [{"p": "payload"}],
+        "repeat": "",
+        "payload": "{\"input\":\"hdmi1\"}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 320,
+        "wires": [["control-node"]]
+    }
+]
