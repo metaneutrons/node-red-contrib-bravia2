@@ -86,6 +86,16 @@ This project is a modernized fork of [node-red-contrib-bravia](https://github.co
 
 The original implementation provided the foundation for controlling Sony BRAVIA TVs from Node-RED. This fork updates the codebase to modern Node.js standards and removes deprecated dependencies.
 
+## Release Process
+
+This project uses [release-please](https://github.com/googleapis/release-please) for automated releases. The workflow:
+
+1. Push commits to `main` using [Conventional Commits](https://www.conventionalcommits.org/) format
+2. Release-please automatically creates/updates a release PR with changelog
+3. Merge the release PR to trigger npm publish
+
+Do NOT manually create tags or bump versions in package.json.
+
 ## License
 
 MIT
