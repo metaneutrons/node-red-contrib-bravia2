@@ -25,7 +25,7 @@
         RED.notify('Discovering Sony BRAVIA devices...');
         $.get('/bravia/discover')
           .done(function(data) {
-            var devices = JSON.parse(data);
+            var devices = typeof data === 'string' ? JSON.parse(data) : data;
             if (devices.length === 0) {
               RED.notify('No Sony BRAVIA devices found.', 'error');
               return;

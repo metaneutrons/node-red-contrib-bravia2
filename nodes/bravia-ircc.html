@@ -33,7 +33,7 @@
 
           $.get('/bravia/ircc', { host: config.host, port: config.port, psk: config.psk })
             .done(function(data) {
-              var codes = JSON.parse(data);
+              var codes = typeof data === 'string' ? JSON.parse(data) : data;
               if (codes.length === 0) {
                 RED.notify('No IRCC codes retrieved, check your TV connection settings.', 'error');
                 return;

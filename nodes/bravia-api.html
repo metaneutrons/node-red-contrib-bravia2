@@ -31,7 +31,7 @@
               method: selected.data('method')
             })
             .done(function(data) {
-              var method = JSON.parse(data);
+              var method = typeof data === 'string' ? JSON.parse(data) : data;
               var usage = '<p>Below is the usage information for:</p><p><b>' + selected.data('protocol') + ':' + selected.data('version') + ':' + selected.data('method') + '</b></p>';
               if (method[1].length > 0) {
                 usage += 'Payload: <pre>';
@@ -77,7 +77,7 @@
         if (config && config.host && config.port && config.psk) {
           $.get('/bravia/methods', { host: config.host, port: config.port, psk: config.psk })
             .done(function(data) {
-              var protocols = JSON.parse(data);
+              var protocols = typeof data === 'string' ? JSON.parse(data) : data;
               if (protocols.length === 0) {
                 RED.notify('No API methods retrieved, check your TV connection settings.', 'error');
                 return;
