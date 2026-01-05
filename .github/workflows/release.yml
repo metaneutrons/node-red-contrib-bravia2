@@ -1,7 +1,5 @@
 name: Release
 
-run-name: "Release ${{ inputs.version || 'auto' }}"
-
 on:
   workflow_dispatch:
     inputs:
@@ -25,7 +23,7 @@ jobs:
         with:
           release-type: node
           target-branch: main
-          ${{ inputs.version && format('release-as: {0}', inputs.version) || '' }}
+          release-as: ${{ inputs.version || '' }}
 
   publish:
     needs: release-please
