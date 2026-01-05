@@ -1,0 +1,14 @@
+services:
+  nodered:
+    image: nodered/node-red:latest
+    user: root
+    ports:
+      - "1880:1880"
+    volumes:
+      - nodered_data:/data
+      - ./:/data/node_modules/node-red-contrib-bravia
+    environment:
+      - TZ=Europe/Berlin
+
+volumes:
+  nodered_data:
