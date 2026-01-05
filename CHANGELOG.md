@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.2](https://github.com/metaneutrons/node-red-contrib-bravia2/compare/v2.2.1...v2.2.2) (2026-01-05)
+
+
+### Bug Fixes
+
+* revert timeout to 5s default ([325b457](https://github.com/metaneutrons/node-red-contrib-bravia2/commit/325b4573ab2f15c9738a1c420f04199192c8494d))
+
 ## [2.2.1](https://github.com/metaneutrons/node-red-contrib-bravia2/compare/v2.2.0...v2.2.1) (2026-01-05)
 
 
