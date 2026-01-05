@@ -11,7 +11,7 @@ module.exports = (RED) => {
       this.host = config.host;
       this.port = config.port;
       this.psk = config.psk;
-      this.timeout = parseInt(config.timeout, 10) || 2000;
+      this.timeout = parseInt(config.timeout, 10) || 5000;
 
       if (this.host && this.port && this.psk) {
         this.bravia = new Bravia(this.host, this.port, this.psk, this.timeout);
