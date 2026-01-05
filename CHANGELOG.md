@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/metaneutrons/node-red-contrib-bravia2/compare/v2.2.0...v2.2.1) (2026-01-05)
+
+
+### Bug Fixes
+
+* parse timeout as integer ([1a7a66e](https://github.com/metaneutrons/node-red-contrib-bravia2/commit/1a7a66e901b152743a6175a867b1c8659a7b7228))
+
 ## [2.2.0](https://github.com/metaneutrons/node-red-contrib-bravia2/compare/v2.1.0...v2.2.0) (2026-01-05)
 
 
