@@ -43,7 +43,8 @@
     },
     "examples": [
       { "name": "control-tv", "path": "examples/control-tv.json" },
-      { "name": "ircc-commands", "path": "examples/ircc-commands.json" }
+      { "name": "ircc-commands", "path": "examples/ircc-commands.json" },
+      { "name": "api-calls", "path": "examples/api-calls.json" }
     ]
   },
   "dependencies": {

@@ -1,0 +1,82 @@
+[
+    {
+        "id": "bravia2-example-api",
+        "type": "tab",
+        "label": "Bravia API Example",
+        "disabled": false,
+        "info": "Example flow showing how to call Sony BRAVIA API methods directly."
+    },
+    {
+        "id": "api-node",
+        "type": "bravia-api",
+        "z": "bravia2-example-api",
+        "tv": "",
+        "method": "",
+        "payload": "",
+        "polling": false,
+        "interval": "10",
+        "intervalUnit": "seconds",
+        "outputMode": "change",
+        "name": "API Call",
+        "x": 310,
+        "y": 100,
+        "wires": [["debug-api"]]
+    },
+    {
+        "id": "debug-api",
+        "type": "debug",
+        "z": "bravia2-example-api",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload",
+        "x": 490,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "inject-power",
+        "type": "inject",
+        "z": "bravia2-example-api",
+        "name": "Get Power Status",
+        "props": [{"p": "method", "v": "system:1.0:getPowerStatus", "vt": "str"}],
+        "repeat": "",
+        "x": 130,
+        "y": 100,
+        "wires": [["api-node"]]
+    },
+    {
+        "id": "inject-sysinfo",
+        "type": "inject",
+        "z": "bravia2-example-api",
+        "name": "Get System Info",
+        "props": [{"p": "method", "v": "system:1.0:getSystemInformation", "vt": "str"}],
+        "repeat": "",
+        "x": 130,
+        "y": 160,
+        "wires": [["api-node"]]
+    },
+    {
+        "id": "inject-volume",
+        "type": "inject",
+        "z": "bravia2-example-api",
+        "name": "Get Volume",
+        "props": [{"p": "method", "v": "audio:1.0:getVolumeInformation", "vt": "str"}],
+        "repeat": "",
+        "x": 110,
+        "y": 220,
+        "wires": [["api-node"]]
+    },
+    {
+        "id": "inject-apps",
+        "type": "inject",
+        "z": "bravia2-example-api",
+        "name": "Get Apps",
+        "props": [{"p": "method", "v": "appControl:1.0:getApplicationList", "vt": "str"}],
+        "repeat": "",
+        "x": 110,
+        "y": 280,
+        "wires": [["api-node"]]
+    }
+]
