@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.0](https://github.com/metaneutrons/node-red-contrib-bravia2/compare/v2.1.0...v2.2.0) (2026-01-05)
+
+
+### Features
+
+* add example flows for control and IRCC nodes ([9f544b8](https://github.com/metaneutrons/node-red-contrib-bravia2/commit/9f544b8c2442264ab3c2549ad9d70548f69a6ecc))
+* add example flows for control, IRCC, and API nodes ([153c845](https://github.com/metaneutrons/node-red-contrib-bravia2/commit/153c8454bcf34cc34e5c89f52bcf8939b5586bc6))
+
 ## [2.1.0](https://github.com/metaneutrons/node-red-contrib-bravia2/compare/v2.0.1...v2.1.0) (2026-01-05)
 
 
