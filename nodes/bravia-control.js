@@ -94,13 +94,11 @@ module.exports = (RED) => {
     async poll() {
       if (this.polling) return;
       this.polling = true;
-      this.status({ fill: 'blue', shape: 'dot', text: 'connecting...' });
 
       try {
         const state = {};
 
         const powerRes = await this.tv.bravia.system.invoke('getPowerStatus');
-        this.status({ fill: 'blue', shape: 'dot', text: 'polling...' });
         state.power = powerRes.status === 'active';
 
         if (state.power) {

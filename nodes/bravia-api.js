@@ -75,7 +75,6 @@ module.exports = (RED) => {
     async poll() {
       if (this._polling) return;
       this._polling = true;
-      this.status({ fill: 'blue', shape: 'dot', text: 'polling...' });
 
       try {
         const result = await this.invokeMethod(this.method, this.payload);
