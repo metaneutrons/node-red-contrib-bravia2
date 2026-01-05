@@ -1,0 +1,102 @@
+<script type="text/javascript">
+  RED.nodes.registerType('bravia-control', {
+    category: 'devices',
+    color: '#b8535a',
+    icon: 'tv.png',
+    defaults: {
+      tv: { type: 'bravia-tv', required: true },
+      pollVolume: { value: true },
+      pollInput: { value: false },
+      interval: { value: 10, validate: RED.validators.number() },
+      intervalUnit: { value: 'seconds' },
+      pollAfterCommand: { value: true },
+      outputMode: { value: 'change' },
+      name: { value: '' }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function() {
+      return this.name || 'bravia control';
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="bravia-control">
+  <div class="form-row">
+    <label for="node-input-tv"><i class="fa fa-television"></i> TV</label>
+    <input type="text" id="node-input-tv">
+  </div>
+
+  <div class="form-row">
+    <label style="width: auto;"><i class="fa fa-list"></i> Poll data:</label>
+  </div>
+  <div class="form-row" style="padding-left: 20px;">
+    <input type="checkbox" id="node-input-pollPower" checked disabled style="width: auto; margin-right: 5px;">
+    <label for="node-input-pollPower" style="width: auto;"> Power (always)</label>
+  </div>
+  <div class="form-row" style="padding-left: 20px;">
+    <input type="checkbox" id="node-input-pollVolume" style="width: auto; margin-right: 5px;">
+    <label for="node-input-pollVolume" style="width: auto;"> Volume / Mute</label>
+  </div>
+  <div class="form-row" style="padding-left: 20px;">
+    <input type="checkbox" id="node-input-pollInput" style="width: auto; margin-right: 5px;">
+    <label for="node-input-pollInput" style="width: auto;"> Input source</label>
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-interval"><i class="fa fa-clock-o"></i> Interval</label>
+    <input type="number" id="node-input-interval" min="0" style="width: 60px;">
+    <select id="node-input-intervalUnit" style="width: 100px;">
+      <option value="seconds">seconds</option>
+      <option value="minutes">minutes</option>
+      <option value="hours">hours</option>
+    </select>
+    <span style="margin-left: 5px; color: #888;">(0 = disabled)</span>
+  </div>
+
+  <div class="form-row">
+    <input type="checkbox" id="node-input-pollAfterCommand" style="width: auto; margin-right: 5px;">
+    <label for="node-input-pollAfterCommand" style="width: auto;"> Poll after command</label>
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-outputMode"><i class="fa fa-sign-out"></i> Output</label>
+    <select id="node-input-outputMode" style="width: 200px;">
+      <option value="change">Only on change (RBE)</option>
+      <option value="always">Every poll</option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="bravia-control">
+  <p>Polls Sony BRAVIA TV status and accepts control commands.</p>
+
+  <h3>Output</h3>
+  <p><code>msg.payload</code> contains the current TV state:</p>
+  <pre>{"power": true, "volume": 21, "mute": false, "input": "hdmi3"}</pre>
+  <p>When TV is off, only <code>power</code> is returned.</p>
+
+  <h3>Input</h3>
+  <p>Send commands using the same JSON format:</p>
+  <ul>
+    <li><code>{"power": true}</code> - Turn on</li>
+    <li><code>{"power": false}</code> - Standby</li>
+    <li><code>{"volume": 30}</code> - Set volume (0-100)</li>
+    <li><code>{"mute": true}</code> - Mute on/off</li>
+    <li><code>{"input": "hdmi1"}</code> - Switch input</li>
+    <li><code>{}</code> or <code>true</code> - Manual poll</li>
+  </ul>
+  <p>Multiple commands can be combined in one message.</p>
+
+  <h3>Input Format</h3>
+  <p>Input sources use format: <code>hdmi1</code>, <code>hdmi2</code>, <code>composite1</code>, etc.</p>
+  <p>When an internal app (Netflix, etc.) is running, input shows <code>"app"</code>.</p>
+
+  <h3>RBE Mode</h3>
+  <p>"Only on change" mode only emits when state differs from previous poll.</p>
+</script>

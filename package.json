@@ -29,6 +29,7 @@
     "url": "https://github.com/metaneutrons/node-red-contrib-bravia2/issues"
   },
   "license": "MIT",
+  "types": "index.d.ts",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -37,7 +38,8 @@
     "nodes": {
       "bravia-tv": "nodes/bravia-tv.js",
       "bravia-ircc": "nodes/bravia-ircc.js",
-      "bravia-api": "nodes/bravia-api.js"
+      "bravia-api": "nodes/bravia-api.js",
+      "bravia-control": "nodes/bravia-control.js"
     }
   },
   "dependencies": {

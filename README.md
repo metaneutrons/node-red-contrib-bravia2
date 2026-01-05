@@ -2,16 +2,17 @@
 
 [![npm version](https://img.shields.io/npm/v/node-red-contrib-bravia2.svg)](https://www.npmjs.com/package/node-red-contrib-bravia2)
 [![npm downloads](https://img.shields.io/npm/dm/node-red-contrib-bravia2.svg)](https://www.npmjs.com/package/node-red-contrib-bravia2)
+[![CI](https://github.com/metaneutrons/node-red-contrib-bravia2/actions/workflows/ci.yml/badge.svg)](https://github.com/metaneutrons/node-red-contrib-bravia2/actions/workflows/ci.yml)
 [![Node.js Version](https://img.shields.io/node/v/node-red-contrib-bravia2.svg)](https://nodejs.org)
-[![License](https://img.shields.io/npm/l/node-red-contrib-bravia2.svg)](https://github.com/metaneutrons/node-red-contrib-bravia2/blob/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/metaneutrons/node-red-contrib-bravia2.svg)](https://github.com/metaneutrons/node-red-contrib-bravia2/issues)
+[![License](https://img.shields.io/npm/l/node-red-contrib-bravia2.svg)](https://github.com/metaneutrons/node-red-contrib-bravia2/blob/main/LICENSE)
 
 Node-RED nodes to control Sony BRAVIA Android TVs.
 
 ## Features
 
+- **Control Node** - Simple way to control basic TV functions (power, volume, input) with a single compound message
+- **API Node** - Full access to the Sony BRAVIA REST API for advanced use cases
 - **IRCC Node** - Send remote control commands (power, volume, navigation, etc.)
-- **API Node** - Call any Sony BRAVIA REST API method
 - **Auto-discovery** - Automatically discover TVs on your network
 - **Modern codebase** - Native fetch, async/await, zero vulnerabilities
 
@@ -43,11 +44,25 @@ Or install via the Node-RED palette manager.
 
 Configuration node for your TV connection. Set the hostname/IP, port (default: 80), and PSK.
 
-### bravia-ircc
+### bravia-control
 
-Send IRCC (IR-like) commands to control the TV. Commands can be specified by name (e.g., `VolumeUp`, `Home`, `Hdmi1`) or as raw IRCC codes.
+Bidirectional node that polls TV status and accepts commands.
 
-**Input:** `msg.payload` - Command name or comma-separated list of commands
+**Polling:** Configurable interval (1s to 1h) with selectable status items:
+- Power status (always polled)
+- Volume/mute level
+- Input source
+
+**Features:**
+- Built-in RBE (Report by Exception) - only outputs on change
+- Skip-if-busy prevents request pileup
+
+**Input:** `msg.payload` - JSON object with commands:
+```json
+{"power": true, "volume": 30, "input": "hdmi1"}
+```
+
+**Output:** `msg.payload` - Current TV state in same format
 
 ### bravia-api
 
@@ -58,6 +73,12 @@ Call any Sony BRAVIA API method directly.
 - `msg.payload` - Optional JSON payload for the method
 
 **Output:** `msg.payload` - API response
+
+### bravia-ircc
+
+Send IRCC (IR-like) commands to control the TV. Commands can be specified by name (e.g., `VolumeUp`, `Home`, `Hdmi1`) or as raw IRCC codes.
+
+**Input:** `msg.payload` - Command name or comma-separated list of commands
 
 ## Credits
 

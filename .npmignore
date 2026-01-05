@@ -1,0 +1,12 @@
+# Dev files
+.github/
+.editorconfig
+.gitattributes
+.gitignore
+.mergify.yml
+.nvmrc
+docker-compose.yml
+eslint.config.mjs
+
+# Generated
+node_modules/

@@ -47,7 +47,7 @@ module.exports = (RED) => {
           this.send(msg);
           this.status({ fill: 'green', shape: 'dot', text: 'Successful' });
         } catch (error) {
-          this.error(error);
+          this.error(error, msg);
           this.status({ fill: 'red', shape: 'dot', text: 'Failed' });
         }
         setTimeout(() => this.status({}), 3000);
