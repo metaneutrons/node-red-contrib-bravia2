@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/metaneutrons/node-red-contrib-bravia2/compare/v2.0.0...v2.0.1) (2026-01-05)
+
+
+### Bug Fixes
+
+* trigger release workflow on push to main ([cd615c4](https://github.com/metaneutrons/node-red-contrib-bravia2/commit/cd615c44310d69312987c0287c80dc10176eedab))
+
 ## [2.0.0](https://github.com/metaneutrons/node-red-contrib-bravia2/compare/v1.2.0...v2.0.0) (2026-01-05)
 
 
