@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.1.0](https://github.com/metaneutrons/node-red-contrib-bravia2/compare/v2.0.1...v2.1.0) (2026-01-05)
+
+
+### Features
+
+* add bravia-control node for simple TV control ([6444968](https://github.com/metaneutrons/node-red-contrib-bravia2/commit/64449688c0c3f1ab8db6cc30c10f737ffc520eed))
+* **api:** add polling mode with RBE support ([c64ff42](https://github.com/metaneutrons/node-red-contrib-bravia2/commit/c64ff42886963420d73c16c17efca2e8aa6f90b0))
+
+
+### Performance Improvements
+
+* reduce timeout to 2s and remove status flicker ([2fde296](https://github.com/metaneutrons/node-red-contrib-bravia2/commit/2fde29633ef6a250cc395dfaf83ffb1ce2c73bf8))
+
 ## [2.0.1](https://github.com/metaneutrons/node-red-contrib-bravia2/compare/v2.0.0...v2.0.1) (2026-01-05)
 
 
