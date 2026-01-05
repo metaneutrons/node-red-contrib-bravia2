@@ -1,5 +1,7 @@
 name: Release
 
+run-name: "Release ${{ inputs.version || 'auto' }}"
+
 on:
   workflow_dispatch:
     inputs:
