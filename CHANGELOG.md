@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.3](https://github.com/metaneutrons/node-red-contrib-bravia2/compare/v2.2.2...v2.2.3) (2026-01-07)
+
+
+### Bug Fixes
+
+* improve error handling and add polling toggle ([1b229d5](https://github.com/metaneutrons/node-red-contrib-bravia2/commit/1b229d5d756d2a21466da01268d99e66c18bc84b))
+
 ## [2.2.2](https://github.com/metaneutrons/node-red-contrib-bravia2/compare/v2.2.1...v2.2.2) (2026-01-05)
 
 
