@@ -6,6 +6,7 @@ module.exports = (RED) => {
       RED.nodes.createNode(this, config);
 
       this.tv = RED.nodes.getNode(config.tv);
+      this.pollingEnabled = config.polling === true;
       this.pollVolume = config.pollVolume;
       this.pollInput = config.pollInput;
       this.interval = config.interval || 10;
@@ -13,6 +14,7 @@ module.exports = (RED) => {
       this.pollAfterCommand = config.pollAfterCommand !== false;
       this.outputMode = config.outputMode || 'change';
       this.name = config.name;
+      this.wires = config.wires || [];
 
       this.polling = false;
       this.timer = null;
@@ -26,8 +28,11 @@ module.exports = (RED) => {
       this.on('input', (msg) => this.handleInput(msg));
       this.on('close', () => this.cleanup());
 
-      this.startPolling();
-      this.poll();
+      const hasOutput = this.wires.length > 0 && this.wires[0].length > 0;
+      if (this.pollingEnabled && hasOutput) {
+        this.startPolling();
+        this.poll();
+      }
     }
 
     getIntervalMs() {
@@ -38,7 +43,6 @@ module.exports = (RED) => {
 
     startPolling() {
       const ms = this.getIntervalMs();
-      this.log(`Starting polling with interval: ${ms}ms`);
       if (ms === 0) return;
 
       this.timer = setInterval(() => {

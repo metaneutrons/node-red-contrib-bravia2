@@ -100,7 +100,7 @@
               $('#method-usage').html(usage);
             })
             .fail(function() {
-              RED.notify('Failed to retrieve API method usage, check your TV connection settings.', 'error');
+              RED.notify('Failed to retrieve API method usage for ' + config.host + ', check your TV connection settings.', 'error');
             });
         } else {
           $('#method-usage').text('Select an API method to show usage information.');
@@ -121,7 +121,7 @@
             .done(function(data) {
               var protocols = typeof data === 'string' ? JSON.parse(data) : data;
               if (protocols.length === 0) {
-                RED.notify('No API methods retrieved, check your TV connection settings.', 'error');
+                RED.notify('No API methods retrieved from ' + config.host + ', check your TV connection settings.', 'error');
                 return;
               }
 
@@ -142,7 +142,7 @@
               refreshUsage();
             })
             .fail(function() {
-              RED.notify('Failed to retrieve API methods, check your TV connection settings.', 'error');
+              RED.notify('Failed to retrieve API methods from ' + config.host + ', check your TV connection settings.', 'error');
             });
         }
       });

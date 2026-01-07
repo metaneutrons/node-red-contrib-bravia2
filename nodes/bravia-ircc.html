@@ -35,7 +35,7 @@
             .done(function(data) {
               var codes = typeof data === 'string' ? JSON.parse(data) : data;
               if (codes.length === 0) {
-                RED.notify('No IRCC codes retrieved, check your TV connection settings.', 'error');
+                RED.notify('No IRCC codes retrieved from ' + config.host + ', check your TV connection settings.', 'error');
                 return;
               }
 
@@ -56,7 +56,7 @@
               $('#node-input-ircc').val((found) ? found.name : '');
             })
             .fail(function() {
-              RED.notify('Failed to retrieve IRCC codes, check your TV connection settings.', 'error');
+              RED.notify('Failed to retrieve IRCC codes from ' + config.host + ', check your TV connection settings.', 'error');
             });
         }
       }

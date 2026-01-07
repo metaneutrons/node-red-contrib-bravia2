@@ -5,6 +5,7 @@
     icon: 'tv.png',
     defaults: {
       tv: { type: 'bravia-tv', required: true },
+      polling: { value: false },
       pollVolume: { value: true },
       pollInput: { value: false },
       interval: { value: 10, validate: RED.validators.number() },
@@ -17,6 +18,17 @@
     outputs: 1,
     label: function() {
       return this.name || 'bravia control';
+    },
+    oneditprepare: function() {
+      function togglePolling() {
+        if ($('#node-input-polling').is(':checked')) {
+          $('#polling-options').show();
+        } else {
+          $('#polling-options').hide();
+        }
+      }
+      $('#node-input-polling').on('change', togglePolling);
+      togglePolling();
     }
   });
 </script>
@@ -28,43 +40,46 @@
   </div>
 
   <div class="form-row">
-    <label style="width: auto;"><i class="fa fa-list"></i> Poll data:</label>
-  </div>
-  <div class="form-row" style="padding-left: 20px;">
-    <input type="checkbox" id="node-input-pollPower" checked disabled style="width: auto; margin-right: 5px;">
-    <label for="node-input-pollPower" style="width: auto;"> Power (always)</label>
-  </div>
-  <div class="form-row" style="padding-left: 20px;">
-    <input type="checkbox" id="node-input-pollVolume" style="width: auto; margin-right: 5px;">
-    <label for="node-input-pollVolume" style="width: auto;"> Volume / Mute</label>
-  </div>
-  <div class="form-row" style="padding-left: 20px;">
-    <input type="checkbox" id="node-input-pollInput" style="width: auto; margin-right: 5px;">
-    <label for="node-input-pollInput" style="width: auto;"> Input source</label>
+    <input type="checkbox" id="node-input-polling" style="width: auto; margin-right: 5px;">
+    <label for="node-input-polling" style="width: auto;"><i class="fa fa-list"></i> Poll data</label>
   </div>
 
-  <div class="form-row">
-    <label for="node-input-interval"><i class="fa fa-clock-o"></i> Interval</label>
-    <input type="number" id="node-input-interval" min="0" style="width: 60px;">
-    <select id="node-input-intervalUnit" style="width: 100px;">
-      <option value="seconds">seconds</option>
-      <option value="minutes">minutes</option>
-      <option value="hours">hours</option>
-    </select>
-    <span style="margin-left: 5px; color: #888;">(0 = disabled)</span>
+  <div id="polling-options">
+    <div class="form-row" style="padding-left: 20px;">
+      <input type="checkbox" id="node-input-pollPower" checked disabled style="width: auto; margin-right: 5px;">
+      <label for="node-input-pollPower" style="width: auto;"> Power (always)</label>
+    </div>
+    <div class="form-row" style="padding-left: 20px;">
+      <input type="checkbox" id="node-input-pollVolume" style="width: auto; margin-right: 5px;">
+      <label for="node-input-pollVolume" style="width: auto;"> Volume / Mute</label>
+    </div>
+    <div class="form-row" style="padding-left: 20px;">
+      <input type="checkbox" id="node-input-pollInput" style="width: auto; margin-right: 5px;">
+      <label for="node-input-pollInput" style="width: auto;"> Input source</label>
+    </div>
+
+    <div class="form-row">
+      <label for="node-input-interval"><i class="fa fa-clock-o"></i> Interval</label>
+      <input type="number" id="node-input-interval" min="1" style="width: 60px;">
+      <select id="node-input-intervalUnit" style="width: 100px;">
+        <option value="seconds">seconds</option>
+        <option value="minutes">minutes</option>
+        <option value="hours">hours</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label for="node-input-outputMode"><i class="fa fa-sign-out"></i> Output</label>
+      <select id="node-input-outputMode" style="width: 200px;">
+        <option value="change">Only on change (RBE)</option>
+        <option value="always">Every poll</option>
+      </select>
+    </div>
   </div>
 
   <div class="form-row">
     <input type="checkbox" id="node-input-pollAfterCommand" style="width: auto; margin-right: 5px;">
-    <label for="node-input-pollAfterCommand" style="width: auto;"> Poll after command</label>
-  </div>
-
-  <div class="form-row">
-    <label for="node-input-outputMode"><i class="fa fa-sign-out"></i> Output</label>
-    <select id="node-input-outputMode" style="width: 200px;">
-      <option value="change">Only on change (RBE)</option>
-      <option value="always">Every poll</option>
-    </select>
+    <label for="node-input-pollAfterCommand" style="width: auto;"> Poll data after input</label>
   </div>
 
   <div class="form-row">
